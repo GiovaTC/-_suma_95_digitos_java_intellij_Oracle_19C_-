@@ -2,6 +2,8 @@
 
 <img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/1f72e018-9df0-4f85-99db-3b9b1a18dac8" />  
 
+<img width="2551" height="1079" alt="image" src="https://github.com/user-attachments/assets/dd9cd5fb-e75f-4c18-b2c0-f60a15363c2c" />    
+
 # Suma95Digitos — README
 
 ## Resumen
