@@ -135,7 +135,7 @@ public class Suma95Digitos extends JFrame {
         }
 
     }
-    
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Suma95Digitos().setVisible(true));
     }
