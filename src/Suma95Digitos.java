@@ -110,7 +110,7 @@ public class Suma95Digitos extends JFrame {
     }
 
     private void guardarOracle(ActionEvent e) {
-        String url = "jdbc:oracle:thin://@localhost:1521/orcl";  // Cambie a su servicio/PUDB
+        String url = "jdbc:oracle:thin:@//localhost:1521/orcl";  // Cambie a su servicio/PUDB
         String user = "system";   //
         String pass = "Tapiero123";    //
 
