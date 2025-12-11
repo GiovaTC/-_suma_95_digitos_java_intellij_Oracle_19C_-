@@ -107,22 +107,36 @@ public class Suma95Digitos extends JFrame {
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
-    }   
-
-    private void guardarOracle(ActionEvent e) {
-
     }
 
+    private void guardarOracle(ActionEvent e) {
+        String url = "jdbc:oracle:thin://@localhost:1521/orcl";  // Cambie a su servicio/PUDB
+        String user = "system";   //
+        String pass = "Tapiero123";    //
 
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        try (Connection conn = DriverManager.getConnection(url, user, pass)) {
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+            CallableStatement cs = conn.prepareCall("{ call SP_INSERT_SUMAS(?, ?) }");
+            cs.setString(1, procedimientoTexto);
+            cs.setInt(2, resultadoFinal);
+
+            cs.execute();
+
+            JOptionPane.showMessageDialog(this,
+                    "Datos insertados correctamente en Oracle.",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al insertar en Oracle: " + ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
+
+    }
+    
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new Suma95Digitos().setVisible(true));
     }
 }
