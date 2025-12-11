@@ -58,10 +58,59 @@ public class Suma95Digitos extends JFrame {
     }
 
     private void calcularOperacion(ActionEvent e) {
-    }
+
+        List<Integer> lista = new ArrayList<>();
+        procedimientoTexto = "";
+        resultadoFinal = 0;
+
+        try {
+            // leer los 95 números
+            for(int i = 0; i < 95; i++){
+                int val = Integer.parseInt(txtNumeros[i].getText().trim());
+                lista.add(val);
+            }
+
+            procedimientoTexto += "=== PROCESO DE SUMA ===\n";
+            int parcial = 0;
+            int contador = 0;
+
+            for (int i = 0; i < lista.size(); i++) {
+                parcial += lista.get(i);
+                contador++;
+
+                procedimientoTexto += "N" + (i + 1) + ": " + lista.get(i) + " -> Parcial: " + parcial + "\n";
+
+                if (contador == 8) {
+                    procedimientoTexto += "Se completo un bloque de 8 numeros. Suma parcial: " + parcial + "\n";
+                    procedimientoTexto += "Se suma +5 adicional -> " + (parcial + 5) + "\n";
+                    resultadoFinal += parcial + 5;
+                    procedimientoTexto += "Acumulado total: " + resultadoFinal + "\n\n";
+
+                    parcial = 0;
+                    contador = 0;
+                }
+            }
+            // si sobran numeros despues de grupos de 8
+                if (contador == 0) {
+                    procedimientoTexto += "Bloque final incompleto. Suma: " + parcial + "\n";
+                    resultadoFinal += parcial;
+                }
+
+                procedimientoTexto += "\nRESULTADO FINAL: " + resultadoFinal;
+
+                txtAreaProceso.setText(procedimientoTexto);
+                btnGuardar.setEnabled(true);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Por favor ingrese valores numéricos válidos.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }   
 
     private void guardarOracle(ActionEvent e) {
-        
+
     }
 
 
